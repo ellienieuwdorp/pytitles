@@ -44,15 +44,15 @@ def main():
     print("Scouring the web for subtitles, please wait...")
     data = ost.search_subtitles([{'sublanguageid': 'eng', 'moviehash': hash, 'moviebytesize': size}])
     bestdic = None
-
-    highestsum = 0
+    
+    highestdownloadcount = 0
     for dict in data:
-        sumvotes = int(dict.get('SubSumVotes'))
-        if sumvotes > highestsum:
-            sumvotes = highestsum
+        downloadcount = int(dict.get('SubDownloadsCnt'))
+        if downloadcount > highestdownloadcount:
+            downloadcount = highestdownloadcount
             bestdic = dict
 
-    print("Subtitle found with", bestdic.get('SubSumVotes'), "upvotes.")
+    print("Subtitle found in", bestdic.get('SubLanguageID'), "with", bestdic.get('SubDownloadsCnt'), "downloads.")
     print("Downloading subtitles, please wait...")
     urllib.request.urlretrieve(bestdic.get('SubDownloadLink'), path_full_nofile + "/" + path_file_noext + ".srt.gz")
     print("Subtitle downloaded!")
