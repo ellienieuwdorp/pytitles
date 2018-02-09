@@ -42,7 +42,6 @@ def main():
     size = f.size
 
     print("Scouring the web for subtitles, please wait...")
-    data = ost.search_subtitles([{'sublanguageid': 'en', 'moviehash': hash, 'moviebytesize': size}])
     data = ost.search_subtitles([{'sublanguageid': 'eng', 'moviehash': hash, 'moviebytesize': size}])
     bestdic = None
 
